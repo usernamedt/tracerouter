@@ -23,19 +23,8 @@ class TracerouteParser:
             if first_token == '*':
                 return hop
 
-            second_token = parts.pop(0)
-            if second_token == 'ms':
-                # process additional rtt
-                hop.rtt = float(first_token)
-                if len(parts) > 0 and parts[0].startswith('!'):
-                    parts.pop(0)
-            else:
-                hop.name = first_token
-                hop.ip_info = IpInfo(second_token[1:][:-1])
-                hop.rtt = float(parts.pop(0))
-                parts.pop(0)
-                if len(parts) > 0 and parts[0].startswith('!'):
-                    parts.pop(0)
+            hop.name = first_token
+            hop.ip_info = IpInfo(first_token)
 
             return hop
 

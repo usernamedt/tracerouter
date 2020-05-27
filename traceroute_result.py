@@ -6,6 +6,8 @@ class TracerouteResult:
         table_rows = []
         table_header = ["#", "IP", "AS", "Country", "City", "ISP"]
         for hop in self.hops:
+            if hop is None:
+                continue
             if hop.is_failed_hop():
                 continue
             table_rows.append(hop.get_hop_info())

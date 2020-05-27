@@ -21,7 +21,7 @@ def main():
                              'The allowed range for max_ttl is 1 to 255; the default value is 30.',
                         required=False, default=30)
     args = parser.parse_args()
-    output = subprocess.check_output(["traceroute", "-w", str(args.w), "-m", str(args.m), args.target])
+    output = subprocess.check_output(["traceroute", "-n", "-w", str(args.w), "-m", str(args.m), args.target])
     print("Traceroute completed. Processing...\n")
     parser = TracerouteParser()
     traceroute_result = parser.parse_data(output.decode("utf-8"))
